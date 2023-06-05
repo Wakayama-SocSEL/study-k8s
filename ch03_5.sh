@@ -1,5 +1,3 @@
-cd ch03_5
-
 # 3つのDockerホストを立ち上げる（manager, worker01, worker02）
 docker-compose up -d
 
