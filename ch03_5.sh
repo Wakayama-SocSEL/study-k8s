@@ -14,7 +14,7 @@ JOIN_TOKEN=$(docker container exec -it manager docker swarm join-token -q worker
 JOIN_TOKEN=$(echo $JOIN_TOKEN | cut -c -85)
 
 # worker01, worker02，worker03をSwarmクラスタに登録する
-docker container exec -it worker01 docker swarm join --token "$JOIN_TOKEN" manager:2377
+docker container exec -it worker01 docker swarm join --token $JOIN_TOKEN manager:2377
 docker container exec -it worker02 docker swarm join --token $JOIN_TOKEN manager:2377
 docker container exec -it worker03 docker swarm join --token $JOIN_TOKEN manager:2377
 
