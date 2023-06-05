@@ -1,3 +1,4 @@
+cd todoapi
 docker image build -t ch04/todoapi:latest .
 docker image tag ch04/todoapi:latest localhost:5000/ch04/todoapi:latest
 docker image push localhost:5000/ch04/todoapi:latest
