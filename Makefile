@@ -12,6 +12,13 @@ build.swarm:
 	
 	@docker container exec -it manager docker network create --driver=overlay --attachable todoapp
 
+build.tododb:
+	@cd tododb && \
+	docker image build -t ch04/tododb:latest . && \
+	docker image tag ch04/tododb:latest localhost:5000/ch04/tododb:latest && \
+	docker image push localhost:5000/ch04/tododb:latest && \
+	docker container exec -it manager docker stack deploy -c /stack/todo-mysql.yml todo_mysql
+
 build.todoapi:
 	@cd todoapi && \
 	docker image build -t ch04/todoapi:latest . && \
