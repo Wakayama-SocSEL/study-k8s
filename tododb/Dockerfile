@@ -1,4 +1,4 @@
-FROM mysql:5.7-debian
+FROM mysql:5.7
 
 # (1) パッケージアップデートとwgetインストール
 RUN apt-get update
