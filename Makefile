@@ -1,6 +1,8 @@
 SHELL=/bin/bash
 
-.PHONY: build.swarm build.tododb build.todoapi build.nginx build.todoweb build
+.PHONY: build.swarm build.tododb build.todoapi build.nginx build.todoweb build ch05
+
+buildtodo: build.swarm build.tododb build.todoapi build.nginx build.todoweb
 
 build.swarm:
 	@docker container exec -it manager docker swarm init
@@ -41,4 +43,7 @@ build.todoweb:
 	docker container exec -it manager docker stack deploy -c /stack/todo-frontend.yml todo_frontend && \
 	docker container exec -it manager docker stack deploy -c /stack/todo-ingress.yml todo_ingress
 
-build: build.swarm build.tododb build.todoapi build.nginx build.todoweb
+ch05:
+	@cd ch05 && \
+	kubectl apply -f dashboard.yaml  && \
+	kubectl proxy
