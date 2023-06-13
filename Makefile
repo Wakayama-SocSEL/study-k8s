@@ -4,7 +4,8 @@ SHELL=/bin/bash
 
 build: build.swarm build.tododb build.todoapi build.nginx build.todoweb
 
-build.swarm:
+build.swarm: up
+	@sleep 3
 	@docker container exec -it manager docker swarm init
 	
 	@JOIN_TOKEN=$$(docker container exec -it manager docker swarm join-token -q worker | cut -c -85); \
@@ -42,6 +43,9 @@ build.todoweb:
 	docker image push localhost:5000/ch04/todoweb:latest && \
 	docker container exec -it manager docker stack deploy -c /stack/todo-frontend.yml todo_frontend && \
 	docker container exec -it manager docker stack deploy -c /stack/todo-ingress.yml todo_ingress
+
+up:
+	docker compose up -d
 
 ch05:
 	@cd ch05 && \
