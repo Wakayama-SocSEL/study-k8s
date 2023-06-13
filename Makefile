@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 .PHONY: build.swarm build.tododb build.todoapi build.nginx build.todoweb build ch05
 
-buildtodo: build.swarm build.tododb build.todoapi build.nginx build.todoweb
+build: build.swarm build.tododb build.todoapi build.nginx build.todoweb
 
 build.swarm:
 	@docker container exec -it manager docker swarm init
